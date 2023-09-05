@@ -1,9 +1,7 @@
 import * as tinycolor from "tinycolor2";
 
-import * as fs from "fs/promises";
-
 import { IColor, IColorConfig } from "../models";
-import { ExtensionContext, commands } from "vscode";
+import { ExtensionContext, commands, workspace } from "vscode";
 import { DEFAULT_COLOR_PREFIX } from "../constants";
 
 /**
@@ -71,29 +69,32 @@ export function replaceColorsInText(
  * @param path
  * @returns config
  */
-export async function readConfigFile(
-  path: string
-): Promise<Required<IColorConfig>> {
-  let colorConfig: Required<IColorConfig> = {
-    colorPrefix: DEFAULT_COLOR_PREFIX,
-    color: {},
-    reveredColor: {},
-    importPath: "",
-  };
-
+export async function readConfigFile(): Promise<Required<IColorConfig>> {
   try {
-    const jsonConfig = await fs.readFile(path, "utf8");
+    const config = workspace.getConfiguration("autoCssInJsColor");
 
-    const parsedConfig: IColorConfig = JSON.parse(jsonConfig);
+    const colorPrefix = config.get("colorPrefix", DEFAULT_COLOR_PREFIX);
 
-    const reveredColor: IColor = Object.fromEntries(
-      Object.entries(parsedConfig.color || {}).map(([key, val]) => [
-        val.toLocaleLowerCase(),
-        key,
-      ])
+    const color: IColor = config.get("color", {});
+
+    const reveredColor: IColor = config.get(
+      "reveredColor",
+      Object.fromEntries(
+        Object.entries(color || {}).map(([key, val]) => [
+          val.toLocaleLowerCase(),
+          key,
+        ])
+      )
     );
 
-    return Object.assign(colorConfig, parsedConfig, { reveredColor });
+    const importPath = config.get("importPath", "");
+
+    return {
+      colorPrefix,
+      color,
+      reveredColor,
+      importPath,
+    };
   } catch (err) {
     throw new Error("读取配置文件失败");
   }

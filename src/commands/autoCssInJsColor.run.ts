@@ -33,15 +33,14 @@ const autoCssinJsColor = async (config: IColorConfig) => {
         new vscode.Range(startPos, endPos),
         replaceWithRgbText
       );
+      editBuilder.insert(new vscode.Position(0, 0), config.importPath + "\n");
     });
 
-    //TODO: auto import color file
-
     await vscode.commands.executeCommand("editor.action.organizeImports");
-    await vscode.commands.executeCommand("editor.action.formatDocument");
-    await vscode.commands.executeCommand("workbench.action.files.save");
 
-    vscode.window.showInformationMessage("颜色替换完成!");
+    setTimeout(async () => {
+      await vscode.commands.executeCommand("workbench.action.files.save");
+    }, 500);
   } catch (err: any) {
     vscode.window.showErrorMessage("应用颜色失败:" + err.message);
   }
