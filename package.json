@@ -1,6 +1,6 @@
 {
-  "name": "vscode-auto-import-bixicolor",
-  "displayName": "vscode-auto-import-bixicolor",
+  "name": "vscode-auto-cssinjs-color",
+  "displayName": "vscode-auto-cssinjs-color",
   "description": "",
   "version": "0.0.1",
   "engines": {
@@ -14,8 +14,8 @@
   "contributes": {
     "commands": [
       {
-        "command": "bixi.applyColor.run",
-        "title": "bixi.applyColor"
+        "command": "autoCssinJsColor.run",
+        "title": "AutoColor"
       }
     ]
   },

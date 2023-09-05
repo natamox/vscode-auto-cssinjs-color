@@ -2,14 +2,14 @@ import * as vscode from "vscode";
 import * as fs from "fs/promises";
 import * as path from "path";
 
-interface IBixiColor {
+interface IColor {
   [key: string]: string;
 }
 
-interface IBixiColorConfig {
+interface IColorConfig {
   colorPrefix?: string;
-  bixiColor?: IBixiColor;
-  reveredBixiColor?: IBixiColor;
+  color?: IColor;
+  reveredColor?: IColor;
 }
 
 const hexColorRegex = /#[0-9A-Fa-f]{6}\b/g;
@@ -20,25 +20,25 @@ const rgbColorRegex = /rgb\((\d{1,3}),\s*(\d{1,3}),\s*(\d{1,3})\)/g;
 export async function activate(context: vscode.ExtensionContext) {
   const configFilePath = path.join(
     context.extensionPath,
-    "bixi-color-config.json"
+    "color-config.json"
   );
 
-  let bixiColorConfig: IBixiColorConfig = {
-    colorPrefix: "BixiColor",
-    bixiColor: {},
-    reveredBixiColor: {},
+  let bixiColorConfig: IColorConfig = {
+    colorPrefix: "Color",
+    color: {},
+    reveredColor: {},
   };
 
   try {
     const jsonConfig = await fs.readFile(configFilePath, "utf8");
 
-    const parsedConfig: IBixiColorConfig = JSON.parse(jsonConfig);
+    const parsedConfig: IColorConfig = JSON.parse(jsonConfig);
 
     bixiColorConfig = {
       ...bixiColorConfig,
-      bixiColor: parsedConfig.bixiColor,
-      reveredBixiColor: Object.fromEntries(
-        Object.entries(parsedConfig.bixiColor || {}).map(([key, val]) => [
+      color: parsedConfig.color,
+      reveredColor: Object.fromEntries(
+        Object.entries(parsedConfig.color || {}).map(([key, val]) => [
           val.toLocaleLowerCase(),
           key,
         ])
@@ -50,7 +50,7 @@ export async function activate(context: vscode.ExtensionContext) {
   }
 
   const disposable = vscode.commands.registerCommand(
-    "bixi.applyColor.run",
+    "autoCssinJsColor.run",
     async () => {
       const editor = vscode.window.activeTextEditor;
       if (!editor) {
@@ -66,7 +66,7 @@ export async function activate(context: vscode.ExtensionContext) {
           const text = doc.getText();
 
           const newText = text.replace(hexColorRegex, (match, offset) => {
-            const matchColorKey = bixiColorConfig.reveredBixiColor?.[match];
+            const matchColorKey = bixiColorConfig.reveredColor?.[match];
 
             if (!matchColorKey) {
               return match;
@@ -101,9 +101,9 @@ export async function activate(context: vscode.ExtensionContext) {
           }
         }, 700);
 
-        vscode.window.showInformationMessage("Bixi颜色替换完成!");
+        vscode.window.showInformationMessage("颜色替换完成!");
       } catch (err: any) {
-        vscode.window.showErrorMessage("应用 Bixi 颜色失败:" + err.message);
+        vscode.window.showErrorMessage("应用颜色失败:" + err.message);
       }
     }
   );

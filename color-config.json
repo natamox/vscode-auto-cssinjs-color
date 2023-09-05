@@ -1,6 +1,6 @@
 {
-  "colorPrefix": "BixiColor",
-  "bixiColor": {
+  "colorPrefix": "Color",
+  "color": {
     "@bixi-primary-1": "#4d67be",
     "@bixi-primary-2": "#5673d2",
     "@bixi-primary-3": "#415ab0",
