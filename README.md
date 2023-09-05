@@ -1,6 +1,6 @@
-# vscode-auto-import-color README
+# vscode-auto-cssinjs-color README
 
-This is the README for your extension "vscode-auto-import-color". After writing up a brief description, we recommend including the following sections.
+This is the README for your extension "vscode-auto-cssinjs-color". After writing up a brief description, we recommend including the following sections.
 
 ## Features
 
