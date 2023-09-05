@@ -2,7 +2,9 @@
   "name": "vscode-auto-cssinjs-color",
   "displayName": "vscode-auto-cssinjs-color",
   "description": "",
-  "version": "0.0.1",
+  "version": "1.0.0",
+  "publisher": "natamox",
+  "author": "natamox",
   "engines": {
     "vscode": "^1.81.0"
   },
