@@ -8,15 +8,21 @@ Ctrl + Shift + P -> AutoCssInJsColor
 
 # Config
 
-edit color-config.json
+edit settings.json
 
 ```json
 {
-  "colorPrefix": "Color",
-  "color": {
-    "@color-primary-1": "#2A95F2",
-    "@color-info-1": "#5b97bd",
-    ...
+  "autoCssInJsColor": {
+    "colorPrefix": "Color",
+    "importPath": "import { Color } from '@styles';",
+    "color": {
+      "@color-primary-1": "#4d67be",
+      "@color-info-1": "#5b97bd",
+      "@color-success-1": "#47a992",
+      "@color-warning-1": "#cb9433",
+      "@color-error-1": "#e16f64",
+      "@color-grey-1": "#0d0f12",
+      "@color-chart-color-1": "#303c46"
+    }
   }
-}
 ```
