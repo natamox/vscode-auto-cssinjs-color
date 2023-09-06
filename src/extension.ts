@@ -9,7 +9,7 @@ export async function activate(context: vscode.ExtensionContext) {
       autoCssInJsColor(parseConfig)
     );
   } catch (err: any) {
-    vscode.window.showErrorMessage(err);
+    vscode.window.showErrorMessage(err.message);
   }
 }
 

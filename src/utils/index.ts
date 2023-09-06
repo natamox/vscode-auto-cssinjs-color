@@ -1,3 +1,4 @@
+import * as vscode from "vscode";
 import * as tinycolor from "tinycolor2";
 
 import { IColor, IColorConfig } from "../models";
@@ -69,13 +70,18 @@ export function replaceColorsInText(
  * @param path
  * @returns config
  */
-export async function readConfigFile(): Promise<Required<IColorConfig>> {
+export async function readConfigFile() {
   try {
     const config = workspace.getConfiguration("autoCssInJsColor");
 
     const colorPrefix = config.get("colorPrefix", DEFAULT_COLOR_PREFIX);
 
     const color: IColor = config.get("color", {});
+
+    if (!Object.keys(color).length) {
+      vscode.window.showErrorMessage("请在 ./vscode/setting.json 配置 color !");
+      return;
+    }
 
     const reveredColor: IColor = config.get(
       "reveredColor",
@@ -96,7 +102,7 @@ export async function readConfigFile(): Promise<Required<IColorConfig>> {
       importPath,
     };
   } catch (err) {
-    throw new Error("读取配置文件失败");
+    vscode.window.showErrorMessage("读取配置文件失败！");
   }
 }
 

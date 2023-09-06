@@ -3,10 +3,14 @@ import { replaceColorsInText } from "../utils";
 import { hexColorRegex, rgbColorRegex } from "../constants";
 import { IColorConfig } from "../models";
 
-const autoCssinJsColor = async (config: IColorConfig) => {
+const autoCssinJsColor = async (config?: IColorConfig) => {
+  if (!config) {
+    return;
+  }
+
   const editor = vscode.window.activeTextEditor;
   if (!editor) {
-    vscode.window.showInformationMessage("没有打开的编辑器");
+    vscode.window.showInformationMessage("没有打开的编辑器！");
     return;
   }
 

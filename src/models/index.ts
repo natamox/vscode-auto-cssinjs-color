@@ -4,7 +4,7 @@ export interface IColor {
 
 export interface IColorConfig {
   colorPrefix?: string;
-  color?: IColor;
-  reveredColor?: IColor;
+  color: IColor;
+  reveredColor: IColor;
   importPath?: string;
 }
