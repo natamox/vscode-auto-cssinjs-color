@@ -1,4 +1,4 @@
-# vscode-auto-cssinjs-color README
+# vscode-auto-cssinjs-color
 
 Auto replace your css color variables by a command
 
