@@ -5,6 +5,10 @@
   "version": "1.0.0",
   "publisher": "natamox",
   "author": "natamox",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/natamox/vscode-auto-cssinjs-color"
+  },
   "engines": {
     "vscode": "^1.81.0"
   },
