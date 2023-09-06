@@ -10,7 +10,7 @@
     "url": "https://github.com/natamox/vscode-auto-cssinjs-color"
   },
   "engines": {
-    "vscode": "^1.81.0"
+    "vscode": "^1.74.3"
   },
   "categories": [
     "Other"
@@ -34,16 +34,12 @@
     "test": "node ./out/test/runTest.js"
   },
   "devDependencies": {
-    "@types/mocha": "^10.0.1",
     "@types/node": "16.x",
     "@types/tinycolor2": "^1.4.3",
-    "@types/vscode": "^1.81.0",
+    "@types/vscode": "^1.74.3",
     "@typescript-eslint/eslint-plugin": "^6.4.1",
     "@typescript-eslint/parser": "^6.4.1",
-    "@vscode/test-electron": "^2.3.4",
     "eslint": "^8.47.0",
-    "glob": "^10.3.3",
-    "mocha": "^10.2.0",
     "typescript": "^5.1.6"
   },
   "dependencies": {
